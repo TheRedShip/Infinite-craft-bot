@@ -1,6 +1,7 @@
 import requests
 import time
 import random
+import json
 
 s = requests.session()
 
@@ -50,7 +51,7 @@ def send(first,second):
 	try:
 		response = s.get(url, params=params, headers=headers, proxies=prox, timeout=1)
 		return response.json()
-	except:
+	except Exception as e:
 		proxies.remove(random_proxy)
 		return send(first,second)
 
@@ -95,4 +96,9 @@ def recursive(item):
 			recursive(i)
 
 for item in ["Fire", "Earth", "Wind", "Water"]:
-	recursive(item)
+	try:
+		recursive(item)
+	except KeyboardInterrupt as e:
+		with open("result.txt", "w") as f:
+			f.write(json.dumps(recipes))
+		exit()
