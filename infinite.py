@@ -78,7 +78,7 @@ def recursive(item):
 			continue
 		time.sleep(0.25 / len(proxies))
 		
-		print(f"TESTING {item} + {i} {' ' * 100}", end="\r")
+		print(f"TESTING {item} + {i} {' ' * 30}", end="\r")
 		
 		response = send(item,i)
 		result_item = response["result"]
@@ -89,7 +89,7 @@ def recursive(item):
 			items.append(result_item)
 			recipes[result_item] = [i,item]
 
-			print(' ' * 100, end='\r')
+			print(' ' * 30, end='\r')
 			print(f"found {response['result']} :")
 			get_recipe(result_item)
 
